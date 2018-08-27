@@ -25,6 +25,8 @@ requirements:
     - networkx
 
 test:
+  requires:
+    - setuptools
   imports:
     - community
 

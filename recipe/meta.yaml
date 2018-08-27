@@ -26,6 +26,8 @@ requirements:
     - numpy
 
 test:
+  requires:
+    - setuptools
   imports:
     - community
 

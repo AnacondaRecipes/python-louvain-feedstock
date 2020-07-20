@@ -1,6 +1,6 @@
 {% set name = "python-louvain" %}
-{% set version = "0.13" %}
-{% set sha256 = "b4938f20063bc53e68d5b182dcea0634dfb63a0e3489f929d4083c24a920b2fe" %}
+{% set version = "0.14" %}
+{% set sha256 = "e0a50c7a1e87b45410cd2a1d6298268862e55edaa46f90ae6b834bbb62df0951" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/31/d4/d244fa4ca96af747b9204ce500e8919ce72eab60de2129b22a45434f1598/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:

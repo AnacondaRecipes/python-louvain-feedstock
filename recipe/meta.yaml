@@ -1,6 +1,6 @@
 {% set name = "python-louvain" %}
 {% set version = "0.15" %}
-{% set sha256 = "0ff91a06f04966048af56f0233d4f4cc4b7de98223adc3cdd9353b47d7457a8b" %}
+{% set sha256 = "2a856edfbe29952a60a5538a84bb78cca18f6884a88b9325e85a11c8dd4917eb" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://files.pythonhosted.org/packages/31/d4/d244fa4ca96af747b9204ce500e8919ce72eab60de2129b22a45434f1598/{{ name }}-{{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/41/5a/8a6d1210e3c26d5912a538097d4bc749222fd2c69a014505fbeec6b185c9/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:

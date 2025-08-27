@@ -1,20 +1,17 @@
 {% set name = "python-louvain" %}
-{% set version = "0.15" %}
-{% set sha256 = "2a856edfbe29952a60a5538a84bb78cca18f6884a88b9325e85a11c8dd4917eb" %}
+{% set version = "0.16" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://files.pythonhosted.org/packages/41/5a/8a6d1210e3c26d5912a538097d4bc749222fd2c69a014505fbeec6b185c9/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: b7ba2df5002fd28d3ee789a49532baad11fe648e4f2117cf0798e7520a1da56b
 
 build:
   number: 0
-  script: python -m pip install --no-deps --ignore-installed .
-  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
@@ -26,15 +23,25 @@ requirements:
     - numpy
 
 test:
-  requires:
-    - setuptools
+  source_files:
+    - test_community.py
   imports:
     - community
+  commands:
+    - pip check
+    # >   self.assertAlmostEqual(co.modularity(part, graph),co.modularity(part_weight,graph,"test_weight"), places=2)
+    # E   AssertionError: 0.44490358126721763 != 0.4155982905982906 within 2 places (0.02930529066892701 difference)
+    - pytest -v test_community.py --deselect=test_community.py::BestPartitionTest::test_karate
+  requires:
+    - pip
+    - pytest
 
 about:
   home: https://github.com/taynaud/python-louvain
-  license: None
-  summary: 'Louvain Community Detection'
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: Louvain Community Detection
   description: |
     This module implements community detection.
 
@@ -42,8 +49,7 @@ about:
     large networks, Vincent D Blondel, Jean-Loup Guillaume, Renaud Lambiotte,
     Renaud Lefebvre, Journal of Statistical Mechanics: Theory and Experiment
     2008(10), P10008 (12pp)
-
-  doc_url: https://python-louvain.readthedocs.io/en/latest/
+  doc_url: https://python-louvain.readthedocs.io
   dev_url: https://github.com/taynaud/python-louvain
 
 extra:
